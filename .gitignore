@@ -4,3 +4,4 @@ sort_numbers
 *.cmo
 *.cmi
 .vscode/
+**/*.out
