@@ -1,21 +1,23 @@
-n ?= 100000
-path ?= sort/sort_numbers
+n ?= 10000000
+path ?= sort/sort_serial
 # usage: make n=[whatever] path=[path to ur sorting executable]
-serial: sort/sort_numbers
+serial: build
 	python3 check.py $(n) $(path)
 
-build: sort/sort_numbers.cpp
-	g++ sort/sort_numbers.cpp -o sort_serial -std=c++17
+# compiles the main program and outputs an executable
+build: sort/sort_serial.cpp sort/sort_serial.hpp sort/main.cpp
+	g++ -std=c++17 sort/sort_serial.cpp sort/main.cpp sort/util.cpp -o sort/sort_serial
 
-test: sort/sort_numbers.cpp
-	g++ sort/sort_numbers.cpp -o sort_serial -std=c++17
-	./sort_serial
+# compiles the test program, outputs an executable, and runs it
+test: sort/sort_serial.cpp sort/sort_serial.hpp sort/test_sort.cpp
+	g++ -std=c++17 sort/sort_serial.cpp sort/test_sort.cpp sort/util.cpp -o sort/test_serial
+	./sort/test_serial
 
-sort: sort/sort_numbers.cpp
-	g++ sort/sort_numbers.cpp -o sort_serial -std=c++17
-	cat numbers.txt | ./sort_serial
+# compiles the main program and pipes numbers.txt into the executable
+sort: build
+	cat numbers.txt | ./sort/sort_serial
 
 .PHONY: clean
 
 clean:
-	rm check/check_numbers **/*.class sort/sort_numbers **/*.cmo **/*.cmi generate/NumberGenerator.class
+	rm check/check_numbers **/*.class sort/sort_serial sort/test_serial **/*.cmo **/*.cmi generate/NumberGenerator.class
