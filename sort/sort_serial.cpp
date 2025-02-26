@@ -7,35 +7,36 @@ using namespace std;
 void cheat_sort(vector<int> &nums) { sort(nums.begin(), nums.end()); }
 
 void radix_sort(vector<int> &nums) {
+    vector<int> vec0, vec1;
+    vec0.resize(nums.size());
+    vec1.resize(nums.size());
+
     for (int i = 0; i < 32; i++) {
-        vector<int> vec0, vec1;
-        // reserve changes the capacity (so we don't need to resize),
-        // but it doesn't change the size of the vector
-        vec0.reserve(nums.size());
-        vec1.reserve(nums.size());
+        int p0 = 0;
+        int p1 = 0;
         for (int num : nums) {
             if ((num & (1 << i)) == 0) {
-                vec0.push_back(num);
+                vec0[p0++] = num;
             } else {
-                vec1.push_back(num);
+                vec1[p1++] = num;
             }
         }
         int idx = 0;
         if (i < 31) {
             // collect vec0, then vec1
-            for (int num : vec0) {
-                nums[idx++] = num;
+            for (int j = 0; j < p0; j++) {
+                nums[idx++] = vec0[j];
             }
-            for (int num : vec1) {
-                nums[idx++] = num;
+            for (int j = 0; j < p1; j++) {
+                nums[idx++] = vec1[j];
             }
         } else {
             // collect vec1, then vec0
-            for (int num : vec1) {
-                nums[idx++] = num;
+            for (int j = 0; j < p1; j++) {
+                nums[idx++] = vec1[j];
             }
-            for (int num : vec0) {
-                nums[idx++] = num;
+            for (int j = 0; j < p0; j++) {
+                nums[idx++] = vec0[j];
             }
         }
     }

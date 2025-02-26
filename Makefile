@@ -1,4 +1,4 @@
-n ?= 10000000
+n ?= 100000
 path ?= sort/sort_serial
 # usage: make n=[whatever] path=[path to ur sorting executable]
 serial: build

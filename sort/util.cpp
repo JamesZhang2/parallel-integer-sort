@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 using namespace std;
@@ -14,7 +15,11 @@ void print_vector(const vector<int> &nums, const string &delimiter) {
 }
 
 void print_vector(const vector<int> &nums) {
+    // ostringstream oss;
     for (int number : nums) {
-        cout << number << endl;
+        // cout << number << endl;
+        printf("%d\n", number);
+        // oss << number << endl;
     }
+    // cout << oss.str();
 }
