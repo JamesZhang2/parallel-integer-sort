@@ -6,10 +6,13 @@ using namespace std;
 
 void cheat_sort(vector<int> &nums) { sort(nums.begin(), nums.end()); }
 
-void radix_sort(vector<int> &numbers) {
-    vector<int> nums = numbers; // copies numbers into nums
+void radix_sort(vector<int> &nums) {
     for (int i = 0; i < 32; i++) {
         vector<int> vec0, vec1;
+        // reserve changes the capacity (so we don't need to resize),
+        // but it doesn't change the size of the vector
+        vec0.reserve(nums.size());
+        vec1.reserve(nums.size());
         for (int num : nums) {
             if ((num & (1 << i)) == 0) {
                 vec0.push_back(num);
@@ -35,10 +38,6 @@ void radix_sort(vector<int> &numbers) {
                 nums[idx++] = num;
             }
         }
-    }
-    // copy back to numbers
-    for (int i = 0; i < nums.size(); i++) {
-        numbers[i] = nums[i];
     }
 }
 

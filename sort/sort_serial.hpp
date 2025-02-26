@@ -10,7 +10,7 @@ void cheat_sort(std::vector<int> &nums);
 /**
  * In-place radix sort
  */
-void radix_sort(std::vector<int> &numbers);
+void radix_sort(std::vector<int> &nums);
 
 /**
  * In-place merge sort
