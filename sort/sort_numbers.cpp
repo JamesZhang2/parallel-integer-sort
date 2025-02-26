@@ -19,15 +19,10 @@ void radix_sort(vector<int> &numbers) {
     vector<int> nums = numbers; // copies numbers into nums
     for (int i = 0; i < 32; i++) {
         vector<int> vec0, vec1;
-        cout << "i = " << i << endl;
-        // print_vector(nums);
-        cout << "left_shift: " << (1 << i) << endl;
         for (int num : nums) {
             if ((num & (1 << i)) == 0) {
-                cout << "in 0 branch: " << num << endl;
                 vec0.push_back(num);
             } else {
-                cout << "in 1 branch: " << num << endl;
                 vec1.push_back(num);
             }
         }
@@ -40,7 +35,6 @@ void radix_sort(vector<int> &numbers) {
             for (int num : vec1) {
                 nums[idx++] = num;
             }
-            cout << "-----------" << endl;
         } else {
             // collect vec1, then vec0
             for (int num : vec1) {
@@ -59,6 +53,8 @@ void radix_sort(vector<int> &numbers) {
 
 void merge_sort_aux(vector<int> &nums, vector<int> &buffer, int first,
                     int last) {
+    // cout << first << ", " << last << endl;
+    // assert(first <= last);
     if (first == last) { // don't do anything for singleton
         return;
     } else if (first + 1 == last) { // swap pairs if needed
@@ -87,12 +83,12 @@ void merge_sort_aux(vector<int> &nums, vector<int> &buffer, int first,
         // finish last cases
         if (p1 <= middle) {
             for (int i = p1; i <= middle; i++) {
-                buffer[i] = nums[i];
+                buffer[pb++] = nums[i];
             }
         }
         if (p2 <= last) {
             for (int i = p2; i <= last; i++) {
-                buffer[i] = nums[i];
+                buffer[pb++] = nums[i];
             }
         }
 
@@ -105,6 +101,8 @@ void merge_sort_aux(vector<int> &nums, vector<int> &buffer, int first,
 
 void merge_sort(vector<int> &nums) {
     int n = nums.size();
+    if (n == 0)
+        return;
     vector<int> buffer(n);
     merge_sort_aux(nums, buffer, 0, n - 1);
 }
@@ -128,23 +126,23 @@ void test_sort() {
         vector<int> merge = test;
         cheat_sort(cheat);
         radix_sort(radix);
-        // merge_sort(merge);
+        merge_sort(merge);
         assert(cheat == radix);
-        // assert(cheat == merge);
+        assert(cheat == merge);
     }
 }
 
 int main() {
-    // vector<int> nums;
-    // while (true) {
-    //     int a;
-    //     cin >> a;
-    //     if (cin.eof()) {
-    //         break;
-    //     }
-    //     nums.push_back(a);
-    // }
-    test_sort();
-    // cheat_sort(nums);
-    // print_vector(nums);
+    vector<int> nums;
+    while (true) {
+        int a;
+        cin >> a;
+        if (cin.eof()) {
+            break;
+        }
+        nums.push_back(a);
+    }
+    // test_sort();
+    radix_sort(nums);
+    print_vector(nums);
 }
