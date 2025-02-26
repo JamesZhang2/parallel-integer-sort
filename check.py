@@ -7,7 +7,7 @@ import time
 
 def main():
     DEFAULT_NUM_INTS = 100_000
-    DEFAULT_PROGRAM = "sort/sort_numbers"
+    DEFAULT_PROGRAM = "sort"
 
     if len(sys.argv) > 1:
         try:
