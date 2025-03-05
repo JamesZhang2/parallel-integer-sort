@@ -1,6 +1,5 @@
 #include "sort_serial.hpp"
 #include "util.hpp"
-#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -10,12 +9,8 @@ using namespace std;
  */
 int main() {
     vector<int> nums;
-    while (true) {
-        int a;
-        cin >> a;
-        if (cin.eof()) {
-            break;
-        }
+    int a;
+    while (scanf("%d", &a) == 1) {
         nums.push_back(a);
     }
     radix_sort(nums);
