@@ -1,4 +1,4 @@
-#include "sort_serial.hpp"
+#include "sort.hpp"
 #include "util.hpp"
 #include <assert.h>
 #include <iostream>

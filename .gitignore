@@ -7,3 +7,4 @@ sort_numbers
 **/*.out
 **/sort_serial
 **/test_serial
+sort/sort
