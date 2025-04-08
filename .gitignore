@@ -5,6 +5,7 @@ sort_numbers
 *.cmi
 .vscode/
 **/*.out
-**/sort_serial
-**/test_serial
+sort/sort_serial
+sort/test_serial
 sort/sort
+sort/test

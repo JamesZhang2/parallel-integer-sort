@@ -22,11 +22,15 @@ void test_sort() {
         vector<int> cheat = test;
         vector<int> radix = test;
         vector<int> merge = test;
+        vector<int> concurrent_merge = test;
         cheat_sort(cheat);
         radix_sort(radix);
         merge_sort(merge);
+        int MAX_DEPTH = 3;
+        concurrent_merge_sort(concurrent_merge, MAX_DEPTH);
         assert(cheat == radix);
         assert(cheat == merge);
+        assert(cheat == concurrent_merge);
     }
     cout << "All tests passed!" << endl;
 }
