@@ -22,4 +22,9 @@ void merge_sort(std::vector<int> &nums);
  */
 void concurrent_merge_sort(std::vector<int> &nums, int max_depth);
 
+/**
+ * Concurrent radix sort
+ */
+void concurrent_radix_sort(std::vector<int> &nums, int num_threads);
+
 #endif

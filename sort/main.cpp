@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     while (scanf("%d", &a) == 1) {
         nums.push_back(a);
     }
-    int MAX_DEPTH = 3;
+    int MAX_DEPTH = 5;
     if (argc == 1) {
         // Default
         concurrent_merge_sort(nums, MAX_DEPTH);
