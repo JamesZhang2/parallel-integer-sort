@@ -4,6 +4,9 @@ path ?= sort/sort
 python: build
 	python3 check.py $(n) $(path)
 
+python_test: build
+	python3 test.py $(n) $(path)
+
 # compiles the main program and outputs an executable
 build: sort/sort.cpp sort/sort.hpp sort/main.cpp
 	g++ -std=c++17 sort/sort.cpp sort/main.cpp sort/util.cpp -o sort/sort
